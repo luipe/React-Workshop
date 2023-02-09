@@ -162,6 +162,7 @@ const Component = () => {
 - Future
   - There are no plans to remove classes from React
   - But: Most modern libraries have eagerly embraced hooks, e.g.
+    - [react-redux](https://react-redux.js.org/introduction/getting-started) (`useSelector` and `useDispatch` replace the `connect` higher-order function)
     - [TanStack Query](https://tanstack.com/query/latest) (react-query): Fetching data with caching
     - [react-hook-form](https://react-hook-form.com/get-started/), [formik](https://formik.org/docs/overview)
     - [react-use](https://github.com/streamich/react-use): Collection of many hooks (née: libreact)
