@@ -50,8 +50,8 @@ JavaScript library (or toolkit) to build user interfaces
         * independent of platform or language
     * virtual: 
         * Dynamically generated from JS, not a static HTML file
-* JSX
-    * Javascript Syntax Extension
+* JSX/TSX
+    * Javascript (Typescript) Syntax Extension
     * looks like HTML
     * produces elements for the DOM
 
@@ -151,6 +151,75 @@ ReactDOM.render(<HelloWorld />, document.getElementById('root'));
 ```
 
 To remember:
-* Everything before the `return` is Typescript
-* Inside the `return`, it's HTML-like syntax
-* Use braces `{}` to include Typescript inside the HTML-like part
+
+* TSX looks like html but is indeed typescript expressions
+* Our code compiler transpiles TSX to js in the background
+* You can put any valid TypeScript expression inside the curly braces in tsx.
+* You can use React without tsx, but it is not recommended.
+
+```tsx
+<h1>Hello world</h1>
+
+// transpiled (React 17.+)
+JSX.createElement('h1', {children: ['Hello world']})
+```
+
+```tsx
+<div className="App">
+  <HelloWorld/>
+  <p>Some other text</p>
+</div>
+
+// transpiled (React 18.+)
+JSX.createElement('div', {
+  className: "App", 
+  children: [
+    JSX.createElement(HelloWorld, {}),
+    JSX.createElement('p', {children: ['Some other text']})
+  ]
+})
+```
+
+```tsx
+<h1>Hello {name}!</h1>;
+
+// transpiled (React 18+)
+JSX.createElement('h1',
+  {
+    children: [
+      'Hello ',
+      name,
+      '!'
+    ]
+  }
+)
+```
+
+```tsx
+<h1>Hello {name !== undefined ? <b>{name}</b> : <b>unknown</b>}!</h1>
+
+// transpiled (React 18+)
+JSX.createElement('h1', {
+  children: [
+    'Hello ',
+    name !== undefined ? 
+      JSX.createElement('b', {children: [name]}) : 
+      JSX.createElement('b', {children: ['unknown']}),
+    '!'
+  ]
+})
+```
+
+Hence, this is invalid, because `let modifiedCount = count + 12` is not a valid typescript expression.
+```tsx
+<h1>Count: {let modifiedCount = count + 12 }</h1>
+
+// transpiled (React 18+)
+JSX.createElement('h1', {
+  children: [
+    'Count: ',
+    let modifiedCount = count + 12, // ❌
+    '!'
+  ]
+})
+```
