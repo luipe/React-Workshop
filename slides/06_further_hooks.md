@@ -28,8 +28,8 @@ const Pie: FunctionComponent<{ digits: number }> = ({ digits }) => {
 - main use case: memoization of callbacks (stable reference)
 - syntactic sugar to `useMemo`, following examples are equivalent:
 ````tsx
-const memoizedCallback1 = useMemo(() => (x) => f(x), [...dependencies])
-const memoizedCallback2 = useCallback((x) => f(x), [...dependencies])
+const memoizedCallback1 = useMemo(() => (x) => f(x), dependencies)
+const memoizedCallback2 = useCallback((x) => f(x), dependencies)
 ````
 
 ----
