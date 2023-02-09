@@ -141,6 +141,7 @@ const Component = () => {
     
     return (
         <div>
+            <div>{`The count is ${count}`}</div>
             <button onClick={() => dispatch({ type: "COUNT_INCREASE" })}>
                 Increase
             </button>
