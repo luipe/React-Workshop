@@ -77,6 +77,7 @@ const App = () => (
     </...>
 );
 ````
+[CodeSandBox example](https://codesandbox.io/s/brave-chandrasekhar-lw5k6m?file=/src/Header.js)
 
 ### React Context "hook" way
 
@@ -98,6 +99,8 @@ const App = () => (
     </...>
 );
 ````
+
+[CodeSandBox example](https://codesandbox.io/s/brave-chandrasekhar-lw5k6m?file=/src/NavigationItem.js)
 
 ----
 
