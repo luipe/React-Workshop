@@ -104,6 +104,56 @@ const App = () => (
 
 ----
 
+## useReducer
+
+- Conceptually similar to `useState`
+- Use cases
+  - state with more complicated update logic
+  - large state object
+  - several local states that cannot be handled/updated independently
+- Signature: `const [state, dispatch] = useReducer(reducer, initialState)`
+  - `state` is read-only
+  - Modification via `dispatch` function: `dispatch(action)`
+  - New state is calculated by `reducer`
+    - Signature: `(state: State, action: Action) => State`
+    - Reducers should be *pure* (no side effects).
+    - Reducers *must not* throw.
+    - Reducers *must not* mutate the current state. In case of a change, a new state instance should be returned
+  - Advantage: easy to unit-test
+- Typical reducer implementation:
+
+````ts
+const countReducer = (state: number, action: any): number => {
+    switch (action?.type) {
+      case "COUNT_INCREASE":
+          return state + 1;
+      case "COUNT_RESET":
+          return 0;
+      default:
+          return state;
+    }
+}
+````
+
+````tsx
+const Component = () => {
+    const [count, dispatch] = useReducer(countReducer, 0);
+    
+    return (
+        <div>
+            <button onClick={() => dispatch({ type: "COUNT_INCREASE" })}>
+                Increase
+            </button>
+            <button onClick={() => dispatch({ type: "COUNT_RESET" })}>
+                Reset
+            </button>
+        </div>
+    );
+}
+````
+
+----
+
 ## Custom Hooks
 
 - Existing hooks (basic or other custom ones) can be used to compose a custom hook.
