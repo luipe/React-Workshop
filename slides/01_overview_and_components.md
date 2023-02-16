@@ -100,8 +100,9 @@ ReactDOM.render(<HelloWorld />, document.getElementById('root'));
 
 **src**
 * **App.tsx** The main React component
+* **App.test.tsx** unit test for App.tsx
 * **index.tsx** inclusion of component in DOM
-* **styles.css** style sheet
+* **App.css** and **index.css** style sheets
 
 **root folder**
 * **package.json** dependencies to packages
