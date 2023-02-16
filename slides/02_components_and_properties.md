@@ -79,7 +79,7 @@ export const Navigation = () => {
 Example:
 ```tsx
 // component:
-export const Navigation = (props) => {
+export const Navigation = (props: PropsWithChildren) => {
   return <div className="Navigation">{props.children}</div>;
 };
 
